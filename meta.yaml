@@ -1,0 +1,35 @@
+# Full credit goes to https://github.com/conda/conda-recipes for providing this recipe.
+# It has been subsequently adapted for automated building with conda-forge.
+{% set pkg_name = "cycler" %}
+{% set version = "0.10" %}
+
+package:
+  name: {{ pkg_name }}
+  version: {{ version }}
+
+build:
+  # Only build for `win-32` Python 2.7
+  skip: true  # [not win32 or not py27]
+  number: 1
+  script: pip install "{{ pkg_name }}=={{ version }}"
+
+requirements:
+  host:
+    - pip
+    - six
+
+  run:
+    - six
+
+test:
+  imports:
+    - cycler
+
+about:
+  home: http://github.com/matplotlib/cycler
+  license: BSD 3-Clause
+  summary: 'Composable style cycles.'
+
+extra:
+  recipe-maintainers:
+    - cfobel
